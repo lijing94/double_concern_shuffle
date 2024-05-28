@@ -41,9 +41,9 @@ def main():
     #按瘤子重量正序排序
     data_sorted = sorted(data,key=lambda x:x[4])
     
-    print("==========正序排序完成结果打印===============")
-    print(len(data_sorted))
-    print_format_excel(*data_sorted)
+    #print("==========正序排序完成结果打印===============")
+    #print(len(data_sorted))
+    #print_format_excel(*data_sorted)
 
     # 循环随机
     #data_result_best = random_loop(per_group_mouse_num,group_num,*data_sorted)
