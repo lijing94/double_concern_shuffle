@@ -2,13 +2,8 @@
 from glob import glob0
 from access_excel import *
 from add_nums import *
+from global_val import *
 from random_loop import *
-
-
-variance_best       = 500           #本次迭代最好方差
-std_best            = 500           #迭代过程最好标准差
-abs_best            = 500           #迭代过程最好最大绝对值差
-data_result_best    = []
 
 def mux_by_text(compare_by_what = 'abs',x1=0,x2=0,x3=0):
     match compare_by_what:
@@ -46,7 +41,7 @@ def main():
     print_list(*data_sorted)
     
     # 循环随机
-    random_loop(group_num,per_group_mouse_num,*data_sorted)
+    data_result_best = random_loop(per_group_mouse_num,group_num,*data_sorted)
 
     #保存文件
     save_excel_file(*data_result_best)

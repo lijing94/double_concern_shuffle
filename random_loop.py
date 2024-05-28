@@ -1,10 +1,8 @@
 from avg_calc import *
 from shuffle_list import *
 from group import *
+from global_val import *
 
-def print_list(*data_result):
-    for key in data_result:
-        print(key['num'],key)
 
 def iteration(per_group_mouse_num,group_num,compare_by_what = 'abs',\
                                     MAX_ITERITER_NUM    = 100000,\
@@ -12,17 +10,23 @@ def iteration(per_group_mouse_num,group_num,compare_by_what = 'abs',\
                                     *data_sorted):
     variance_acceptable = 5.8           #可接受的方差
     variance_real       = 500           #本次迭代实际方差
+    #best.variance_best
+    #best.std_best
+    #best.abs_best
     global variance_best
+    global std_best
+    global abs_best
+    global data_result_best 
+
     
     std_acceptable      = 2.4           #可接受的标准差
-    global std_best
+    
     std_real            = 500           #本次迭代实际标准差
     
     abs_acceptable      = 2.5           #可接受的最大绝对值差
-    global abs_best
+    
     abs_real            = 500           #本次迭代实际最大绝对值差
     data_result         = []
-    global data_result_best
 
     iteration_num = 1
 
