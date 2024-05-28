@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+__pycache__/access_excel.cpython-312.pyc
+__pycache__/add_nums.cpython-312.pyc
+__pycache__/avg_calc.cpython-312.pyc
+__pycache__/group.cpython-312.pyc
+__pycache__/shuffle_list.cpython-312.pyc
+.DS_Store

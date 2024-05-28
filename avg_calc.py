@@ -1,10 +1,12 @@
+import os
 import numpy as np
  
 #
 def max_of_abs(avg,*list_need_calc):
     abs_element1 = 0
-    for key in list_need_calc:
-        abs_tmp = abs(key - avg)
+    #list_need_calc_float = [float(i) for i in list_need_calc]
+    for i in list_need_calc:
+        abs_tmp = abs(i - avg)
         if(abs_element1 < abs_tmp):
             abs_element1 = abs_tmp
     return abs_element1
@@ -41,9 +43,10 @@ def avg_calc(per_group_mouse_num,group_num,display=0,*data_result):
     #标准差
     std      = np.std(liuzi_group_avg_list)
     std2     = np.std(weight_group_avg_list)
+    #print(liuzi_group_avg_list)
     #最大绝对值差
-    abs_element1 = max_of_abs(liuzi_avg ,liuzi_group_avg_list )
-    abs_element2 = max_of_abs(weight_avg,weight_group_avg_list)
+    abs_element1 = max_of_abs(liuzi_avg ,*liuzi_group_avg_list )
+    abs_element2 = max_of_abs(weight_avg,*weight_group_avg_list)
     
 
 
