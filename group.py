@@ -15,47 +15,69 @@ def group_by_group_nums(group_num,per_group_mouse_num,*data_sorted):
             seris_num = seris_num +1
             
     return data_result
-
+def list_reverse(*data):
+    tmp = []
+    for i in data:
+        tmp.insert(0,i)
+    return tmp
+def list_flatten(*data):
+    tmp = []
+    for i in data:
+        for j in i:
+            tmp.append(j)
+    return tmp
 #保存到二维数组里面
 def group_by_group_nums_to_2dims_list(group_num,per_group_mouse_num,*data_sorted):
     data_result = []
-    data_result_tmp = []
-    print("num i j data_sorted[num]")
+    data_result_for_sort_calc_tmp = []
+    data_result_for_sort_calc = []
+    data_result_buff = []
+    #print("num i j data_sorted[num]")
     for i in range(0,per_group_mouse_num): #colums
-        data_result_tmp = []
+        data_result_for_sort_calc_tmp = []
+        data_result_buff              = []
         for j in range(0,group_num):     #rows
             num = j+i*group_num
-            print(num,i,j,str(data_sorted[num]))
-            data_result_tmp.append(data_sorted[num][4])
+            #print(num,i,j,str(data_sorted[num]))
+            data_result_for_sort_calc_tmp.append(data_sorted[num][4])
+            data_result_buff.append(data_sorted[num])
         if(i%2):
-            data_result_tmp = sorted(data_result_tmp,reverse=True)
-        data_result.append(data_result_tmp)
-    print_format_excel(*data_result) 
+            data_result_for_sort_calc_tmp = sorted(data_result_for_sort_calc_tmp,reverse=True)
+            data_result_buff = list_reverse(*data_result_buff)
+            #data_result_buff              = sorted(data_result_buff,reverse=True)
+        data_result_for_sort_calc.append(data_result_for_sort_calc_tmp)
+        data_result.append(data_result_buff)
+    #print_format_excel(*data_result_for_sort_calc)
+    #data_result = list(np.array(data_result).flatten())
     #data_result = np.rot90(data_result,-1)
+    data_result = list(zip(*data_result))
+    data_result = list_flatten(*data_result)
+    print_list(*data_result)
     #print_format_excel(*data_result)
-    avg_row_calc_for_2dim_list(group_num,*data_result)
-    return data_result
+    data_result_for_sort_calc = avg_row_calc_for_2dim_list(group_num,*data_result_for_sort_calc)
+    return data_result,data_result_for_sort_calc
 
 def avg_row_calc_for_2dim_list(group_num,*data_result):
-    data_result_tmp = []
+    data_result_for_sort_calc = []
     row_avg_2_float = []
     row_abs_to_avg_all = []
     avg_all = 0
     data_result_flatten = []
 
     for i in data_result:
-        data_result_tmp.append(i)
+        data_result_for_sort_calc.append(i)
         m_round = np.mean(data_result,axis=0)
     for i in m_round:
         n = round(i,2)
         row_avg_2_float.append(n)
-    data_result_tmp.append(row_avg_2_float)
-    data_result_flatten = list(np.array(data_result_tmp).flatten())
+    data_result_for_sort_calc.append(row_avg_2_float)
+    data_result_flatten = list(np.array(data_result_for_sort_calc).flatten())
     avg_all = np.mean(data_result_flatten)
     for r in row_avg_2_float:
         row_abs_to_avg_all.append(round(abs(r-avg_all),2))
-    data_result_tmp.append(row_abs_to_avg_all)
+    data_result_for_sort_calc.append(row_abs_to_avg_all)
     
-    print_format_excel(*data_result_tmp)
+    print_format_excel(*data_result_for_sort_calc)
     print("方差:"+str(round(np.var(row_avg_2_float),2))+"最大绝对值:"+str(max(row_abs_to_avg_all)))
+    return data_result_for_sort_calc
 

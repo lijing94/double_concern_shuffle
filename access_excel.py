@@ -23,13 +23,14 @@ def read_excel_file(*data):
     return data
 
 
-def save_excel_file(*data):
+def save_excel_file(m_sheet_name = '综合',*data):
     #with open(r"C:\Users\lijing\OneDrive\桌面\double_concern_shuffle\bbb.xlsx","w+") as file:
     print("save start")
     #with open(r"C:\Users\lijing\OneDrive\桌面\double_concern_shuffle\aaa.xlsx","r",encoding='UTF-8') as file:
     file_path = GetExcelPath(1) 
+    write = pd.ExcelWriter(file_path)
     pd.DataFrame(data).to_excel(file_path,\
-                                sheet_name = 'Sheet2',\
+                                sheet_name = m_sheet_name,\
                                 header=None,\
                                 index = None)
     print("保存文件成功！")

@@ -27,6 +27,8 @@ def main():
     per_group_mouse_num = 7             #每组几只
     data                = []
     global data_result_best
+    data_result = []
+    data_result_for_sort_calc = []
     
     
 
@@ -48,13 +50,27 @@ def main():
     # 循环随机
     #data_result_best = random_loop(per_group_mouse_num,group_num,*data_sorted)
 
-    data_result = group_by_group_nums_to_2dims_list(group_num,per_group_mouse_num,*data_sorted)
+    (data_result,data_result_for_sort_calc) = group_by_group_nums_to_2dims_list(group_num,per_group_mouse_num,*data_sorted)
     print("============正序group完成结果打印==============")
     print(len(data_result)) 
     #print_format_excel(*data_result) 
 
     #保存文件
-    save_excel_file(*data_result_best)
+    #save_excel_file('综合',*data_result)
+    file_path = GetExcelPath(1) 
+    write = pd.ExcelWriter(file_path)
+    pd.DataFrame(data_result).to_excel(write,\
+                                sheet_name = '综合',\
+                                header=None,\
+                                index = None)
+    pd.DataFrame(data_result_for_sort_calc).to_excel(write,\
+                                sheet_name = '统计',\
+                                header=None,\
+                                index = None)
+    write._save()
+    write.close()
+    print("保存文件成功！")
+    #save_excel_file('统计',*data_result_for_sort_calc)
     
 
 if __name__ == "__main__":
