@@ -51,7 +51,7 @@ def main():
     data_result = group_by_group_nums_to_2dims_list(group_num,per_group_mouse_num,*data_sorted)
     print("============正序group完成结果打印==============")
     print(len(data_result)) 
-    print_format_excel(*data_result) 
+    #print_format_excel(*data_result) 
 
     #保存文件
     save_excel_file(*data_result_best)
