@@ -9,27 +9,20 @@ def iteration(per_group_mouse_num,group_num,compare_by_what = 'abs',\
                                     print_num           = 20000,\
                                     *data_sorted):
     variance_acceptable = 5.8           #可接受的方差
+    abs_acceptable      = 2.5           #可接受的最大绝对值差
+    std_acceptable      = 2.4           #可接受的标准差
     variance_real       = 500           #本次迭代实际方差
-    #best.variance_best
-    #best.std_best
-    #best.abs_best
+    abs_real            = 500           #本次迭代实际最大绝对值差
+    std_real            = 500           #本次迭代实际标准差
+    
     global variance_best
     global std_best
     global abs_best
-    global data_result_best 
 
-    
-    std_acceptable      = 2.4           #可接受的标准差
-    
-    std_real            = 500           #本次迭代实际标准差
-    
-    abs_acceptable      = 2.5           #可接受的最大绝对值差
-    
-    abs_real            = 500           #本次迭代实际最大绝对值差
+    global data_result_best 
     data_result         = []
 
     iteration_num = 1
-
     while (True):
         #打乱顺序
         data_sorted = shuffle_by_group(per_group_mouse_num,*data_sorted)

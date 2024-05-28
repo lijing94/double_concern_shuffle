@@ -4,6 +4,7 @@ from access_excel import *
 from add_nums import *
 from global_val import *
 from random_loop import *
+import pandas as pd
 
 def mux_by_text(compare_by_what = 'abs',x1=0,x2=0,x3=0):
     match compare_by_what:
@@ -19,6 +20,7 @@ def get_the_best(real=0,best=0,*data):
         print(real,best)
         best = real
         return data
+
     
 def main():
     group_num           = 10            #分几组
@@ -38,10 +40,18 @@ def main():
 
     #按瘤子重量正序排序
     data_sorted = sorted(data,key=lambda x:x[4])
-    print_list(*data_sorted)
     
+    print("==========正序排序完成结果打印===============")
+    print(len(data_sorted))
+    print_format_excel(*data_sorted)
+
     # 循环随机
-    data_result_best = random_loop(per_group_mouse_num,group_num,*data_sorted)
+    #data_result_best = random_loop(per_group_mouse_num,group_num,*data_sorted)
+
+    data_result = group_by_group_nums_to_2dims_list(group_num,per_group_mouse_num,*data_sorted)
+    print("============正序group完成结果打印==============")
+    print(len(data_result)) 
+    print_format_excel(*data_result) 
 
     #保存文件
     save_excel_file(*data_result_best)

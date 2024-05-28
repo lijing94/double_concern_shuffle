@@ -8,12 +8,10 @@ _T = TypeVar("_T")
 def add_col_num_1to10(group_num,*data):
     num = 1 
     for key in data:
-        #print(key)
         key["nums_grp"] = num
         num = num + 1
         if num == group_num+1:
             num = 1
-        #print(key)
     return data
 
 

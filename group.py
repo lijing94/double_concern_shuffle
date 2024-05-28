@@ -1,3 +1,4 @@
+from global_val import *
 #按分组数进行分组
 def group_by_group_nums(group_num,per_group_mouse_num,*data_sorted):
     data_result = []
@@ -12,4 +13,20 @@ def group_by_group_nums(group_num,per_group_mouse_num,*data_sorted):
                #print(debug_count)
             seris_num = seris_num +1
             
+    return data_result
+
+#保存到二维数组里面
+def group_by_group_nums_to_2dims_list(group_num,per_group_mouse_num,*data_sorted):
+    data_result = []
+    data_result_tmp = []
+    for key in data_sorted:
+        data_result_tmp.append(key)
+    for i in range(0,group_num):
+        for j in range(0,per_group_mouse_num):
+            print(i,j,i+j*per_group_mouse_num,len(data_result_tmp))
+            data_result.append(data_result_tmp[i+j*per_group_mouse_num])
+      
+    print("data_result:"+str(len(data_result)))
+    print_format_excel(*data_result)
+    
     return data_result
