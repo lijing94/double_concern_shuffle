@@ -4,7 +4,7 @@ import os
 def GetExcelPath(inout = 0):
     PATH = ''
     if inout == 1:
-        PATH =  os.path.join(os.getcwd(),"bbb.xlsx")
+        PATH =  os.path.join(os.getcwd(),"输出结果.xlsx")
     else:
         PATH =  os.path.join(os.getcwd(),"aaa.xlsx")
     return PATH

@@ -11,5 +11,6 @@ build/
 dist/
 main.spec
 main.exe
+输出结果.xlsx
 ~$*
 bbb.xlsxe
