@@ -100,6 +100,7 @@ def main():
     write._save()
     write.close()
     print("保存文件成功！")
+    _close_ = input("按下enter键退出: ")
     #save_excel_file('统计',*data_result_for_sort_calc)
     
 
