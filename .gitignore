@@ -7,4 +7,9 @@ __pycache__/group.cpython-312.pyc
 __pycache__/shuffle_list.cpython-312.pyc
 .DS_Store
 .vscode/
+build/
+dist/
+main.spec
+main.exe
 ~$*
+bbb.xlsxe
